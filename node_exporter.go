@@ -58,7 +58,7 @@ func newHandler(includeExporterMetrics bool, maxRequests int, logger *slog.Logge
 	}
 	if h.includeExporterMetrics {
 		h.exporterMetricsRegistry.MustRegister(
-			promcollectors.NewProcessCollector(promcollectors.ProcessCollectorOpts{}),
+			newProcessCollector(h.logger),
 			promcollectors.NewGoCollector(),
 		)
 	}
